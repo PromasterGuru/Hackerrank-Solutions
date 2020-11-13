@@ -28,7 +28,7 @@ int main()
         }
         else
         {
-            while (j <= sqrt(arr[i]) && arr[i] != 1)
+            while (j <= sqrt(arr[i]))
             {
                 if (arr[i] % j == 0)
                 {
