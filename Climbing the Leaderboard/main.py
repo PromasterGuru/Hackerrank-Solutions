@@ -5,6 +5,7 @@ import os
 import random
 import re
 import sys
+from collections import Counter
 
 #
 # Complete the 'climbingLeaderboard' function below.
@@ -17,7 +18,18 @@ import sys
 
 
 def climbingLeaderboard(ranked, player):
-    return ar
+    j = 0
+    ar = []
+    ranks = sorted(list(set(ranked)), reverse=True)
+    for i in player[::-1]:
+        while(j < len(ranks)):
+            if i >= ranks[j]:
+                ar.append(j+1)
+                break
+            j+=1
+        if j == len(ranks):
+            ar.append(j+1)
+    return ar[::-1]
 
 
 if __name__ == '__main__':
