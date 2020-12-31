@@ -1,17 +1,33 @@
-def solution(A):
-    pass
+# def solution(k, A):
+#     counter = 0
+#     ar = sorted(A)
+#     for i in range(len(ar) - 1, -1,-1):
+#         if ar[i] != 0:
+#             j = i
+#             counter += 1
+#             while(ar[j] == ar[j-1]):
+#                 counter += 1
+#                 j -= 1
+#             if counter >= k:
+#                 return counter
+#     return counter
 
-print(solution([8,2,10]))
+# print(solution(3, [100,50,50,50,50,25]))
+# print(solution(4, [20,40,60,100]))
+# print(solution(4, [2,2,3,4,5]))
+# print(solution(4, [20,40,60,80,100,0]))
+# print(solution(2, [2,2,3,4,5]))
 
-"""
-[8,2,10]
-(2*10)(8*10)(8*2)
-[2,5,3,8,2]
-(5*3*8*2)(2*3*8*2)(2*5*8*2)(2*5*3*2)(2*5*3*8)
+from itertools import product
+def solution(a, x):
+    ar = [[a[i],a[j]] for i in range(len(a)) for j in range(i+1, len(a))]
+    arr = []
+    for a in ar:
+        arr.append(min(a))
+    return max(arr)
+    
 
-    8    2     10
-8   0    16     80 [(0,1)(0,2), (0,0)(0,2),(0,0)(0,1)]
-2   16    0     20
-10  80   20      0
 
-"""
+
+print(solution([8,2,4,2], 2))
+
