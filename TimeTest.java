@@ -32,5 +32,6 @@ class TimeTest{
     public static void main(String args[]){
         System.out.println("Dare: "+ formatShortDate("30/12/2020"));
         System.out.println("Dare: "+ formatShortDate("12/30/2020"));
+        System.out.println("Dare: "+ formatShortDate("12/29/2020"));
     }
 }

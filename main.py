@@ -1,33 +1,56 @@
-# def solution(k, A):
-#     counter = 0
-#     ar = sorted(A)
-#     for i in range(len(ar) - 1, -1,-1):
-#         if ar[i] != 0:
-#             j = i
-#             counter += 1
-#             while(ar[j] == ar[j-1]):
-#                 counter += 1
-#                 j -= 1
-#             if counter >= k:
-#                 return counter
-#     return counter
+def commonChild(s1, s2):
+    s1Map = {}
+    s2Map = {}
+    for i in range(len(s1)):
+        if s1[i] in s1Map:
+            s1Map[s1[i]].append(i)
+        else:
+            s1Map[s1[i]] = [i]
+        if s2[i] in s2Map:
+            s2Map[s2[i]].append(i)
+        else:
+            s2Map[s2[i]] = [i]
+    s1c = len(s1)
+    s2c = len(s2)
+    s1MapD = {}
+    s2MapD = {}
+    res1 = ""
+    res2 = ""
+    for j in range(len(s1)):
+        if s1[j] in s1Map and s1[j] in s2Map and (s1Map[s1[j]][0] + s2Map[s1[j]][0]) < s1c:
+            s1c = s2Map[s1[j]][0]
+        if s2[j] in s1Map and s2[j] in s2Map and (s1Map[s2[j]][0] + s2Map[s2[j]][0]) < s2c:
+            s2c = s1Map[s2[j]][0]
+    print(s1c, s2c)
+    while s1c < len(s1):
+        print(s2Map)
+        if s1[s1c] in s2Map:
+            res1 += s1[s1c]
+            if len(s2Map[s1[s1c]]) == 0:
+                del s2Map[s1[s1c]]
+            else:
+                s2MapD[s1[s1c]] = s2Map[s1[s1c]][0]
+                s2Map[s1[s1c]].pop(0)
+        s1c += 1
+    while s2c < len(s2):
+        if s2[s2c] in s1Map:
+            res2 += s2[s2c]
+            del s1Map[s2[s2c]]
+        s2c += 1
 
-# print(solution(3, [100,50,50,50,50,25]))
-# print(solution(4, [20,40,60,100]))
-# print(solution(4, [2,2,3,4,5]))
-# print(solution(4, [20,40,60,80,100,0]))
-# print(solution(2, [2,2,3,4,5]))
-
-from itertools import product
-def solution(a, x):
-    ar = [[a[i],a[j]] for i in range(len(a)) for j in range(i+1, len(a))]
-    arr = []
-    for a in ar:
-        arr.append(min(a))
-    return max(arr)
-    
+    return res1
 
 
 
-print(solution([8,2,4,2], 2))
-
+if __name__ == '__main__':
+    s1 = "HALRY"
+    s2 = "SALLY"
+    s1 = "AA"
+    s2 = "BB"
+    s1 = "SHINCHAN"
+    s2 = "NOHARAAA"
+    s1 = "ABCDEF"
+    s2 = "FBDAMN"
+    s1 = "ABCDEFBDA"
+    s2 = "FBDAMNSDR"
+    print(commonChild(s1,s2))
